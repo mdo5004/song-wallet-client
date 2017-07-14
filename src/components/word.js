@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 export default class Word extends Component {
     render() {
-        const n = this.props.word.length;
         const chordStyle = {
-            left: `0ch`,
+            position: 'relative',
+            top: "-1em",
         }
         const wordStyle = {
-            
-            left: `-${n}ch`,
+            position: 'relative',
+            left: "-2em",
         }
         return (
             <span>

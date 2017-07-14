@@ -11,8 +11,7 @@ div {
     font-family: monospace;
     line-height: 1em;
 }
+
 chord {
     color: red;
-    position:relative;
-    top: 1em;
 }

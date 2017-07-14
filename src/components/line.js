@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { parse_words } from './parsers';
 
 export default class Line extends Component {
-//    createMarkup() {
-//        const words = parse_words(this.props.line)
-//          return {__html: words};
-//
-//    }
+
     render() {
-        const words = parse_words(this.props.line);
+        const lineStyle = {
+            position: 'relative',
+            top: (this.props.line.n * 2) + "em",
+        }
+        const words = parse_words(this.props.line.text);
         return(
-            <div>{words}</div>
+            <p style={lineStyle}>{words}</p>
         )
     }
 }

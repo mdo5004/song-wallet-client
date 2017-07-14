@@ -21,7 +21,7 @@ export function parse_sections(text) {
         return <Section section={{name: name, text: text}} key={index+1}/>
     })
 
-    song_components.push(<Section section={{name: 'Header', text:header_text}} key={0} />)
+    song_components.unshift(<Section section={{name: 'Header', text:header_text}} key={0} />)
 console.log(song_components)
     return song_components
 
@@ -45,7 +45,7 @@ export function parse_words(text) {
 export function parse_lines(text) {
     return text.split(/\n/).map( (line,index) => {
         
-        return <Line line={line} key={index} />
+        return <Line line={{text:line, n:index}} key={index} />
         
     })
     
