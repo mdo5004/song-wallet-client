@@ -6,7 +6,7 @@ export default function interpreter(text) {
     let lines = text.split(/\n/)
     lines = lines.map( (line, index) => {
 
-        let chords = line.match(/(\[[\w\d\s#]+\])/g) || []
+        let chords = line.match(/(\[[\w\d\s#\/]+\])/g) || []
         let n = chords.length
         let line_of_chords = []
         let previous_length = 0
