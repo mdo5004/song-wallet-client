@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import './App.css';
-import { Editor } from './editor'
+import './css/App.css';
+import { Editor } from './containers/editor'
 
 
 class App extends Component {

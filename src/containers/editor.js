@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ContentEditable from 'react-contenteditable';
-import './Editor.css'
-import { Display } from './display'
+import '../css/Editor.css'
+import { Display } from '../components/display'
 
 export class Editor extends Component {
     constructor(props) {

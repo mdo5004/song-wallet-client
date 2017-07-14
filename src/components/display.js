@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Editor.css'
+import '../css/Editor.css'
 import interpreter from './interpreter';
 
 export class Display extends Component {
