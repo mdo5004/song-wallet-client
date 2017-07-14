@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import '../css/Editor.css'
-import interpreter from './interpreter';
+import { parse_sections } from './parsers';
 
 export class Display extends Component {
 
     renderText = () => {
-        const renderedText = interpreter(this.props.text);
+        const renderedText = parse_sections(this.props.text);
         return {__html: renderedText}
     }
     
     render(){
+        const renderedText = parse_sections(this.props.text);
         return (
-            <div id="song-display" dangerouslySetInnerHTML={this.renderText()}></div>
+            <div id="song-display" >{renderedText}</div>
         )
     }
 }
