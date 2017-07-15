@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ContentEditable from 'react-contenteditable';
+//import ContentEditable from 'react-contenteditable';
 import '../css/Editor.css'
 import { Display } from '../components/display'
 

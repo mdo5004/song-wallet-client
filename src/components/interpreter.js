@@ -1,5 +1,5 @@
-import React from 'react';
-import Word from './word';
+//import React from 'react';
+//import Word from './word';
 
 export default function interpreter(text) {
 
