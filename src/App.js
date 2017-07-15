@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import './css/App.css';
-import { Menu } from './containers/menu'
+import { ConnectedMenu as Menu } from './containers/menu'
 import { Editor } from './containers/editor'
 import { loadSongs } from './actions/SongActions'
 

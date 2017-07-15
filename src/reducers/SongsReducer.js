@@ -1,4 +1,4 @@
-const initialState = []
+const initialState = [{name:"American Pie", artist:"Don McLean", id:1}]
 
 const songsReducer = (state = initialState, action) => {
     switch(action.type) {
