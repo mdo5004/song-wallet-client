@@ -22,31 +22,36 @@ export function parse_sections(text) {
     })
 
     song_components.unshift(<Section section={{name: 'Header', text:header_text}} key={0} />)
-console.log(song_components)
+    console.log(song_components)
     return song_components
 
 }
 export function parse_words(text) {
     let words = text.split(' ');
+    let cumulativeOffset = 0;
     words = words.map( (word,index) => {
         const chord_word = word.split(/\[([\w\d\s#]+)\]/)
         let text = '';
         let chord = '';
+        
         if (chord_word.length>1){
             chord = chord_word[1];
-            text = chord_word[2];
+            cumulativeOffset += chord.length;
+            for ( var i = 0; i < chord_word.length; i += 2){
+            text += chord_word[i];
+            }
         } else {
             text = chord_word[0];
         }
-        return <Word key={index} word={word} chord={chord} />
+        return <Word key={index} word={text} chord={chord} />
     })
     return words
 }
 export function parse_lines(text) {
     return text.split(/\n/).map( (line,index) => {
-        
+
         return <Line line={{text:line, n:index}} key={index} />
-        
+
     })
-    
+
 }
