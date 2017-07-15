@@ -24,7 +24,7 @@ export default function interpreter(text) {
         }
         line_of_chords = line_of_chords.join(' ').replace(/\[/g,"<chord>").replace(/\]/g,"</chord>")
 
-        return ("<div><pre>" + line_of_chords + "</pre><p>" + line + "</p></div>")
+        return ("<div><p>" + line_of_chords + "</p><p>" + line + "</p></div>")
     })
 
     return lines.join('')

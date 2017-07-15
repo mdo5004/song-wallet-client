@@ -5,14 +5,3 @@ div {
     text-align: left;
     
 }
-#song-display {
-    position: relative;
-    top: 40px;
-    font-family: monospace;
-    line-height: 1em;
-}
-chord {
-    color: red;
-    position:relative;
-    top: 1em;
-}

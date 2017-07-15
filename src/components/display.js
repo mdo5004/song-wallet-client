@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/Editor.css'
+import '../css/Display.css'
 import interpreter from './interpreter';
 
 export class Display extends Component {
@@ -11,7 +11,7 @@ export class Display extends Component {
     
     render(){
         return (
-            <div id="song-display" dangerouslySetInnerHTML={this.renderText()}></div>
+            <pre id="song-display" dangerouslySetInnerHTML={this.renderText()}></pre>
         )
     }
 }
