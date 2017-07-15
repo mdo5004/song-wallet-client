@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
-export class Menu extends Component {
-    
+export class Tray extends Component {
+
     render() {
         const songs = this.props.songs.map( (song,index) => {
-            return <li>{song.name} - {song.artist}</li>
+            return <li key={index}><NavLink exact to={`/songs/${song.id}`}>
+                {song.name} - {song.artist}
+                </NavLink>
+            </li>
         })
         return (
             <div>
-               Menu
+                Tray
                 <ul>
-                {songs}
+                    {songs}
                 </ul>
             </div>
         )
@@ -23,4 +27,4 @@ const mapStateToProps = (state) => {
         songs: state.songs
     }
 }
-export const ConnectedMenu = connect(mapStateToProps,null)(Menu)
+export const ConnectedTray = connect(mapStateToProps,null)(Tray)
