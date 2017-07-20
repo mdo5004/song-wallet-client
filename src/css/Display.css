@@ -1,3 +1,38 @@
-chord {
-    color: red;
+#song-display {
+    font-family: "Courier New",Courier,monospace;
 }
+
+.song-heading {
+    font-family: sans-serif;
+}
+
+.song-title {
+    font-family: sans-serif;
+}
+.song-subtitle {
+    font-family: sans-serif;
+}
+
+.song-section {
+  
+}
+h3.song-section-name {
+  color:blue;  
+}
+.song-line {
+    
+} 
+.song-chords {
+  color:red;  
+}
+/*
+.music-symbol {
+    
+}
+.song-text {
+    
+}
+.song-text-segment {
+    
+}
+*/

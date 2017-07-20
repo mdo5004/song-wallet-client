@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import '../css/Display.css'
-import interpreter from './interpreter';
+import chordprojs from 'chordprojs';
 
 export class Display extends Component {
 
     renderText = () => {
-        const renderedText = interpreter(this.props.text);
+        const renderedText = chordprojs.parse(this.props.text).render();
         return {__html: renderedText}
     }
     
     render(){
         return (
-            <pre id="song-display" dangerouslySetInnerHTML={this.renderText()}></pre>
+            <div id="song-display" dangerouslySetInnerHTML={this.renderText()}></div>
         )
     }
 }
