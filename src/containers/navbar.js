@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 export class NavigationBar extends Component {
 
     render() {
-
+        const currentUsername = 'mdo5004';
         return (
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
@@ -22,14 +22,17 @@ export class NavigationBar extends Component {
                         <LinkContainer to="/options">
                             <NavItem eventKey={2}>Options</NavItem>
                         </LinkContainer>
+                        <LinkContainer to="/friends">
+                            <NavItem eventKey={3}>Friends</NavItem>
+                        </LinkContainer>
                     </Nav>
                     <Nav pullRight>
-                        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}>Action</MenuItem>
-                            <MenuItem eventKey={3.2}>Another action</MenuItem>
-                            <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                        <NavDropdown eventKey={4} title={currentUsername} id="basic-nav-dropdown">
+                            <MenuItem eventKey={4.1}>Action</MenuItem>
+                            <MenuItem eventKey={4.2}>Another action</MenuItem>
+                            <MenuItem eventKey={4.3}>Something else here</MenuItem>
                             <MenuItem divider />
-                            <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                            <MenuItem eventKey={4.3}><Glyphicon glyph="log-out"/> Logout</MenuItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

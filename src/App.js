@@ -14,14 +14,17 @@ class App extends Component {
         return (
             <div><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />    
                 <Router>
-                    <div className="App container">
-                       <Route path='/' component={Navbar} />
-                        <div className="col-md-3">
-                            <Route path='/' component={Tray} />
-                        </div>
-                        <div className="col-md-9">
-                            <Route exact path='/' render={ () => { return(<p>Select a song from the list or add a new song</p>)}} />
-                            <Route path='/songs/:songId' component={Editor} />
+                    <div className="App">
+                        <Route path='/' component={Navbar} />
+                        <div className="container">
+
+                            <div className="col-md-3">
+                                <Route path='/' component={Tray} />
+                            </div>
+                            <div className="col-md-9">
+                                <Route exact path='/' render={ () => { return(<p>Select a song from the list or add a new song</p>)}} />
+                                <Route path='/songs/:songId' component={Editor} />
+                            </div>
                         </div>
                     </div>
                 </Router>
