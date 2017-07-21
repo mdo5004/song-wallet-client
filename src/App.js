@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import './css/App.css';
 import { ConnectedTray as Tray } from './containers/Tray'
-import { Editor } from './containers/editor'
+import { ConnectedEditor as Editor } from './containers/editor'
 import { loadSongs } from './actions/SongActions'
 
 class App extends Component {
@@ -20,12 +20,15 @@ class App extends Component {
                         </div>
                         <div className="col-md-9">
                             <Route exact path='/' render={ () => { return(<p>Select a song from the list or add a new song</p>)}} />
-                            <Route path='/songs/:id' component={Editor} />
+                            <Route path='/songs/:songId' component={Editor} />
                         </div>
                     </div>
                 </Router>
             </div>
         );
+    }
+    componentDidMount(){
+        this.props.loadSongs();
     }
 }
 

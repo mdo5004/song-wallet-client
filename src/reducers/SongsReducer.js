@@ -1,4 +1,4 @@
-const initialState = [{name:"American Pie", artist:"Don McLean", id:1}]
+const initialState = []
 
 const songsReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -8,7 +8,6 @@ const songsReducer = (state = initialState, action) => {
         case 'REMOVE_SONG':
             return state.filter( song => song.id !== action.payload );
         case 'GET_SONGS':
-            
             return action.payload;
         default:
             return state;
