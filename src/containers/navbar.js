@@ -7,7 +7,7 @@ export class NavigationBar extends Component {
     render() {
         const currentUsername = 'mdo5004';
         return (
-            <Navbar inverse collapseOnSelect>
+            <Navbar inverse staticTop fluid collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                         SongWallet
