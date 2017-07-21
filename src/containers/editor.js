@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Editor.css';
 import { Display } from '../components/display';
-import { loadCurrentSong } from '../actions/CurrentSongActions';
+import { loadCurrentSong, updateCurrentSong } from '../actions/CurrentSongActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,22 +12,22 @@ export class Editor extends Component {
         this.state = {
             html: this.props.html
         }
+        this.handleChange = this.handleChange.bind(this);
     }
     handleChange = (event) => {
-        // dispatch update current song!!
-        
-//        this.setState({
-//            html: event.target.value
-//        })
+        this.props.updateCurrentSong(event.target.value);
     }
     initializeComponent = (songId) => {
         this.props.loadCurrentSong(songId);
     }
     componentDidMount(){
+        
         this.initializeComponent(this.props.match.params.songId);    
     }
     componentWillReceiveProps(nextProps){
-        this.initializeComponent(nextProps.match.params.songId);
+        if (nextProps.match.params.songId !== this.props.match.params.songId){
+            this.initializeComponent(nextProps.match.params.songId);
+        }
     }
     
     render() {
@@ -43,6 +43,7 @@ export class Editor extends Component {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         loadCurrentSong: loadCurrentSong,
+        updateCurrentSong: updateCurrentSong,
     }, dispatch)
 }
 const mapStateToProps = (state) => {

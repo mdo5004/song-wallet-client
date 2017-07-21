@@ -3,7 +3,7 @@ const initialState = [{id:1, name:"American Pie", artist:"Don McLean", content:"
 const currentSongReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'UPDATE_SONG':
-            return state;
+            return action.payload || state;
         case 'GET_SONG':
             return action.payload || state;
         default:

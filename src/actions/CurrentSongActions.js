@@ -2,3 +2,6 @@ var songs = [{content:"{title:American Pie}\n{subtitle:Don McLean}\n{section:Int
 export function loadCurrentSong(id){
     return {type:'GET_SONG', payload:songs[id-1]}
 }
+export function updateCurrentSong(content){
+    return {type:'UPDATE_SONG', payload:{content: content}}
+}
