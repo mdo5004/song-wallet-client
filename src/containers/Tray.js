@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
+import { Table } from 'react-bootstrap';
+
 
 export class Tray extends Component {
 
     render() {
         const songs = this.props.songs.map( (song,index) => {
-            return <li key={index}><NavLink exact to={`/songs/${song.id}`}>
-                {song.name} - {song.artist}
-                </NavLink>
-            </li>
+            return <tr key={index}><td ><NavLink exact to={`/songs/${song.id}`}>
+                {song.name} - {song.artist}</NavLink></td></tr>
         })
         return (
-            <div>
-                Tray
-                <ul>
+            
+                <Table striped bordered condensed >
+                  <thead>
+                      <tr><td>Songs</td></tr>
+                  </thead>
+                   <tbody>
                     {songs}
-                </ul>
-            </div>
+                    </tbody>
+                </Table>
+            
         )
     }
 }

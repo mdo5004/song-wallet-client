@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import './css/App.css';
 import { ConnectedTray as Tray } from './containers/Tray'
-import { ConnectedNavbar as Navbar } from './containers/Navbar'
+import { ConnectedNavbar as NavigationBar } from './containers/navbar'
 import { ConnectedEditor as Editor } from './containers/editor'
 import { loadSongs } from './actions/SongActions'
 
@@ -15,15 +15,16 @@ class App extends Component {
             <div><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />    
                 <Router>
                     <div className="App">
-                        <Route path='/' component={Navbar} />
+                        <Route path='/' component={NavigationBar} />
                         <div className="container">
 
-                            <div className="col-md-3">
-                                <Route path='/' component={Tray} />
-                            </div>
-                            <div className="col-md-9">
+                            
+                            <div className="col-lg-9 col-lg-push-3">
                                 <Route exact path='/' render={ () => { return(<p>Select a song from the list or add a new song</p>)}} />
                                 <Route path='/songs/:songId' component={Editor} />
+                            </div>
+                            <div className="col-lg-3 col-lg-pull-9">
+                                <Route path='/' component={Tray} />
                             </div>
                         </div>
                     </div>
