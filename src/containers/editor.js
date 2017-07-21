@@ -33,7 +33,7 @@ export class Editor extends Component {
     render() {
         return (
             <div>
-            <textarea onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
+            <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
             <Display text={this.props.currentSong.content}/>
             </div>
         )
