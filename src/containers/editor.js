@@ -10,7 +10,7 @@ export class Editor extends Component {
         super(props);
         
         this.state = {
-            html: this.props.html
+            editing: false
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -29,12 +29,22 @@ export class Editor extends Component {
             this.initializeComponent(nextProps.match.params.songId);
         }
     }
-    
+    toggleEditing = () => {
+        const editing = this.state.editing;
+        this.setState({
+            editing: !editing,
+        })
+    }
     render() {
+        const editing = this.state.editing;
         return (
             <div>
+                <button onClick={this.toggleEditing}>{editing ? "View" : "Edit"}</button>
+                {editing ? (
             <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
+                    ) : (
             <Display text={this.props.currentSong.content}/>
+                    )}
             </div>
         )
     }
