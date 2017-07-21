@@ -5,16 +5,17 @@ import { bindActionCreators } from 'redux';
 
 import './css/App.css';
 import { ConnectedTray as Tray } from './containers/Tray'
+import { ConnectedNavbar as Navbar } from './containers/Navbar'
 import { ConnectedEditor as Editor } from './containers/editor'
 import { loadSongs } from './actions/SongActions'
 
 class App extends Component {
     render() {
         return (
-            <div><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />
+            <div><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />    
                 <Router>
                     <div className="App container">
+                       <Route path='/' component={Navbar} />
                         <div className="col-md-3">
                             <Route path='/' component={Tray} />
                         </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/Display.css'
+//import '../css/sheets-of-paper.css'
 import chordprojs from 'chordprojs';
 
 export class Display extends Component {
@@ -11,7 +12,7 @@ export class Display extends Component {
     
     render(){
         return (
-            <div id="song-display" dangerouslySetInnerHTML={this.renderText()}></div>
+            <div id="song-display" className="page" dangerouslySetInnerHTML={this.renderText()}></div>
         )
     }
 }
