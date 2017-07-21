@@ -16,10 +16,14 @@ export class NavigationBar extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <LinkContainer to="/">
+                        <LinkContainer exact to="/">
                             <NavItem eventKey={1}>Home</NavItem>
                         </LinkContainer>
-                        <NavItem eventKey={2} href="/">Link</NavItem>
+                        <LinkContainer to="/options">
+                            <NavItem eventKey={2}>Options</NavItem>
+                        </LinkContainer>
+                    </Nav>
+                    <Nav pullRight>
                         <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                             <MenuItem eventKey={3.1}>Action</MenuItem>
                             <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -27,10 +31,6 @@ export class NavigationBar extends Component {
                             <MenuItem divider />
                             <MenuItem eventKey={3.3}>Separated link</MenuItem>
                         </NavDropdown>
-                    </Nav>
-                    <Nav pullRight>
-                        <NavItem eventKey={1} href="/">Link Right</NavItem>
-                        <NavItem eventKey={2} href="/">Link Right</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
