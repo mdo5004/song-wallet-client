@@ -8,3 +8,6 @@ Clone this repo into the directory of your choice with `git clone https://github
 Open the directory and run `npm install` and `npm start` to get started.
 
 All of the active files are in `/src`
+
+# Back-end
+This is simply the front-end React portion of [song-wallet](https://github.com/mdo5004/song-wallet). Head there for instructions for installing the whole package.
