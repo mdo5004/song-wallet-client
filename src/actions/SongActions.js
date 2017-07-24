@@ -1,3 +1,14 @@
 export function loadSongs() {
-    return {type: 'GET_SONGS',payload:[{id:1, name:"American Pie", artist:"Don McLean"},{id:2, name:"Stairway to Heaven", artist:"Led Zeppelin"}]}
+    return (dispatch) => {
+        
+        return fetch(`/songs`, {
+            method: 'GET',
+            mode: 'cors', //is this necessary?
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then( response => response.json())
+          .then( songs => dispatch( {type: 'GET_SONGS', payload: songs}) )
+          .catch(console.log)
+    }
 }

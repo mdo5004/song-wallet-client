@@ -9,7 +9,7 @@ export class Tray extends Component {
     render() {
         const songs = this.props.songs.map( (song,index) => {
             return <tr key={index}><td ><NavLink exact to={`/songs/${song.id}`}>
-                {song.name} - {song.artist}</NavLink></td></tr>
+                {song.title} - {song.artist}</NavLink></td></tr>
         })
         return (
             
