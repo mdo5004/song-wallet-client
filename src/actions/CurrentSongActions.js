@@ -3,7 +3,8 @@ export function loadCurrentSong(id){
         return fetch(`/songs/${id}`, {
             method: 'GET',
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("auth_token")
             }
         }).then( response => response.json())
         .then( song => dispatch( {type: 'GET_SONG', payload:song} ) )
@@ -20,7 +21,8 @@ export function saveCurrentSong(id,content){
             method: 'PATCH',
             body: JSON.stringify(content),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("auth_token")
             }
         }).then( response => response.json())
         .then( song => dispatch( {type: 'SAVE_SONG', payload:song} ) )
