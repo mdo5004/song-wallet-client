@@ -1,9 +1,8 @@
 export function loadSongs() {
     return (dispatch) => {
         
-        return fetch(`/songs`, {
+        return fetch('/songs', {
             method: 'GET',
-            mode: 'cors', //is this necessary?
             headers: {
                 "Content-Type": "application/json"
             }
