@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Editor.css';
 import { Display } from '../components/display';
-import { loadCurrentSong, updateCurrentSong } from '../actions/CurrentSongActions';
+import { loadCurrentSong, updateCurrentSong, saveCurrentSong } from '../actions/CurrentSongActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,8 +14,12 @@ export class Editor extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
     }
+    
     handleChange = (event) => {
         this.props.updateCurrentSong(event.target.value);
+    }
+    saveCurrentSong = () => {
+        this.props.saveCurrentSong(this.props.match.params.songId,this.props.currentSong)
     }
     initializeComponent = (songId) => {
         this.props.loadCurrentSong(songId);
@@ -40,6 +44,7 @@ export class Editor extends Component {
         return (
             <div>
                 <button onClick={this.toggleEditing}>{editing ? "View" : "Edit"}</button>
+                <button onClick={this.saveCurrentSong}>Save</button>
                 {editing ? (
             <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
                     ) : (
@@ -54,6 +59,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         loadCurrentSong: loadCurrentSong,
         updateCurrentSong: updateCurrentSong,
+        saveCurrentSong: saveCurrentSong,
     }, dispatch)
 }
 const mapStateToProps = (state) => {
