@@ -5,7 +5,6 @@ import { loadCurrentSong, updateCurrentSong, saveCurrentSong } from '../actions/
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
 export class Editor extends Component {
     constructor(props){
         super(props);
@@ -14,22 +13,6 @@ export class Editor extends Component {
             editing: false
         }
         this.handleChange = this.handleChange.bind(this);
-    }
-    
-    render() {
-        const editing = this.state.editing;
-        return (
-            <div>
-               <h1>Editor</h1>
-                <button onClick={this.toggleEditing}>{editing ? "View" : "Edit"}</button>
-                <button onClick={this.saveCurrentSong}>Save</button>
-                {editing ? (
-            <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
-                    ) : (
-            <Display text={this.props.currentSong.content}/>
-                    )}
-            </div>
-        )
     }
     
     handleChange = (event) => {
@@ -56,7 +39,19 @@ export class Editor extends Component {
             editing: !editing,
         })
     }
-    
+    render() {
+        const editing = this.state.editing;
+        return (
+            <div>
+                <button onClick={this.saveCurrentSong}>Save</button>
+                
+            <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
+                
+            <Display text={this.props.currentSong.content}/>
+                
+            </div>
+        )
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -68,12 +63,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
     return {
-        songs: state.songs,
         currentSong: state.currentSong,
     }
 }
 Editor.defaultProps = {
-    currentSong:{content:''},
-    songs:[]
+    currentSong:{content:''}
 }
 export const ConnectedEditor = connect(mapStateToProps,mapDispatchToProps)(Editor)
