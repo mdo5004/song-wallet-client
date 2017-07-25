@@ -19,7 +19,6 @@
   "devDependencies": {
     "react-scripts": "1.0.10"
   },
-  "proxy": "http://localhost:3001/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
