@@ -8,7 +8,7 @@ export function login(auth_params) {
             body: JSON.stringify(auth_params)
         }).then( response => response.json())
           .then( resp => {
-            localStorage.setItem('auth_token',resp['auth_token']);
+            sessionStorage.setItem('auth_token',resp['auth_token']);
             dispatch({type:'NEW_SESSION', payload: resp['user']})
         })
           .catch( resp => console.log(resp))
@@ -16,6 +16,6 @@ export function login(auth_params) {
 }
 
 export function logout() {
-    localStorage.setItem('auth_token','')
+    sessionStorage.setItem('auth_token','')
     return({type:'DELETE_SESSION', payload: []})
 }

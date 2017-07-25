@@ -4,7 +4,7 @@ export function loadCurrentSong(id){
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": localStorage.getItem("auth_token")
+                "Authorization": sessionStorage.getItem("auth_token")
             }
         }).then( response => response.json())
         .then( song => dispatch( {type: 'GET_SONG', payload:song} ) )
@@ -22,7 +22,7 @@ export function saveCurrentSong(id,content){
             body: JSON.stringify(content),
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": localStorage.getItem("auth_token")
+                "Authorization": sessionStorage.getItem("auth_token")
             }
         }).then( response => response.json())
         .then( song => dispatch( {type: 'SAVE_SONG', payload:song} ) )
