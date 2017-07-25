@@ -6,8 +6,8 @@ import { ConnectedLogin as Login } from './Login';
 export class Home extends Component {
 
     render() {
-        const currentUser = this.props.currentUser;
-        const disp = !currentUser ? (<Login />) : (<p>Please log in</p>)
+        const currentUser = !!this.props.currentUser;
+        const disp = currentUser ? (<p>Logged in as {this.props.currentUser.username}</p>) : (<Login />)
         return (
         <div>
                 {disp}

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import './css/App.css';
-import { Home } from './containers/Home';
+import { ConnectedHome as Home } from './containers/Home';
 import { NavigationBar } from './components/navbar';
 import { Songs } from './containers/Songs';
 //import { ConnectedEditor as Editor } from './containers/Editor';
