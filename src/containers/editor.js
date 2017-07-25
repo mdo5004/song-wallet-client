@@ -4,7 +4,7 @@ import { Display } from '../components/display';
 import { loadCurrentSong, updateCurrentSong, saveCurrentSong } from '../actions/CurrentSongActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { Tray } from '../components/tray'
 export class Editor extends Component {
     constructor(props){
         super(props);
@@ -13,6 +13,22 @@ export class Editor extends Component {
             editing: false
         }
         this.handleChange = this.handleChange.bind(this);
+    }
+    
+    render() {
+        const editing = this.state.editing;
+        return (
+            <div>
+               <h1>Editor</h1>
+                <button onClick={this.toggleEditing}>{editing ? "View" : "Edit"}</button>
+                <button onClick={this.saveCurrentSong}>Save</button>
+                {editing ? (
+            <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
+                    ) : (
+            <Display text={this.props.currentSong.content}/>
+                    )}
+            </div>
+        )
     }
     
     handleChange = (event) => {
@@ -39,20 +55,7 @@ export class Editor extends Component {
             editing: !editing,
         })
     }
-    render() {
-        const editing = this.state.editing;
-        return (
-            <div>
-                <button onClick={this.toggleEditing}>{editing ? "View" : "Edit"}</button>
-                <button onClick={this.saveCurrentSong}>Save</button>
-                {editing ? (
-            <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
-                    ) : (
-            <Display text={this.props.currentSong.content}/>
-                    )}
-            </div>
-        )
-    }
+    
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -64,10 +67,12 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
     return {
+        songs: state.songs,
         currentSong: state.currentSong,
     }
 }
 Editor.defaultProps = {
-    currentSong:{content:''}
+    currentSong:{content:''},
+    songs:[]
 }
 export const ConnectedEditor = connect(mapStateToProps,mapDispatchToProps)(Editor)
