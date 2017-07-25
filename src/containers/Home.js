@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { ConnectedLogin as Login } from './Login';
 
 
 export class Home extends Component {
 
     render() {
-        return (<p>Logged in as currentUser</p>)
+        const currentUser = this.props.currentUser;
+        const disp = !currentUser ? (<Login />) : (<p>Please log in</p>)
+        return (
+        <div>
+                {disp}
+            </div>
+        )
     }
 }
 

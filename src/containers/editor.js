@@ -4,7 +4,8 @@ import { Display } from '../components/display';
 import { loadCurrentSong, updateCurrentSong, saveCurrentSong } from '../actions/CurrentSongActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Tray } from '../components/tray'
+
+
 export class Editor extends Component {
     constructor(props){
         super(props);
