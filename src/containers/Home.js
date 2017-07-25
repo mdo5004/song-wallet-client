@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ConnectedLogin as Login } from './Login';
-
+import { bindActionCreators } from 'redux';
+import { logout } from '../actions/SessionActions'
 
 export class Home extends Component {
-
+    
     render() {
-        const currentUser = !!this.props.currentUser;
-        const disp = currentUser ? (<p>Logged in as {this.props.currentUser.username}</p>) : (<Login />)
+        const {username} = this.props.currentUser;
+        
+        const disp = username ? (<p>Logged in as {username} <button onClick={this.props.logout}>Log Out</button></p>) : (<Login />)
         return (
         <div>
                 {disp}
@@ -21,4 +23,9 @@ const mapStateToProps = (state) => {
         currentUser: state.currentUser
     }
 }
-export const ConnectedHome = connect(mapStateToProps,null)(Home)
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        logout: logout
+    }, dispatch)
+}
+export const ConnectedHome = connect(mapStateToProps,mapDispatchToProps)(Home)

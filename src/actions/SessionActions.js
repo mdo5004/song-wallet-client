@@ -16,5 +16,6 @@ export function login(auth_params) {
 }
 
 export function logout() {
-    return({type:'DELETE_SESSION', payload: null})
+    localStorage.setItem('auth_token','')
+    return({type:'DELETE_SESSION', payload: []})
 }

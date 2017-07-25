@@ -8,7 +8,7 @@ export function loadSongs() {
                 "Authorization": localStorage.getItem("auth_token")
             }
         }).then( response => response.json())
-          .then( songs => dispatch( {type: 'GET_SONGS', payload: songs}) )
-          .catch(console.log)
+          .then( songs => dispatch( {type: 'GET_SONGS', payload: songs }) )
+          .catch( resp => dispatch( {type: 'GET_SONGS', payload: [] }))
     }
 }

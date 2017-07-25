@@ -12,9 +12,6 @@ import { loadSongs } from './actions/SongActions';
 import { login } from './actions/SessionActions';
 
 class App extends Component {
-    login = () => {
-        this.props.login({"email":"michaeldavidoconnell@gmail.com","password":"password"})
-    }
     render() {
         return (
             <div><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />    
@@ -32,21 +29,7 @@ class App extends Component {
             </div>
         );
     }
-componentDidMount(){
-    this.login();
-    this.props.loadSongs();
-}
 }
 
-const mapDispatchToProps = (dispatch) => { 
-    return bindActionCreators({ 
-        loadSongs: loadSongs,
-        login: login
-    }, dispatch)
-}
-const mapStateToProps = (state) => {
-    return {
-        user: state.currentUser
-    }
-}
-export const WrapperApp = connect(mapStateToProps,mapDispatchToProps)(App);
+
+export const WrapperApp = connect(null)(App);

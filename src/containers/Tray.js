@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { loadSongs } from '../actions/SongActions';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { Table } from 'react-bootstrap';
@@ -24,6 +26,9 @@ export class Tray extends Component {
             
         )
     }
+    componentDidMount() {
+            this.props.loadSongs();
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -31,4 +36,9 @@ const mapStateToProps = (state) => {
         songs: state.songs
     }
 }
-export const ConnectedTray = connect(mapStateToProps,null)(Tray)
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        loadSongs: loadSongs
+    }, dispatch)
+}
+export const ConnectedTray = connect(mapStateToProps,mapDispatchToProps)(Tray)
