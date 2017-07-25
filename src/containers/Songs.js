@@ -1,14 +1,18 @@
 import React from 'react';
 import { ConnectedTray as Tray } from './Tray';
 import { ConnectedEditor as Editor } from './Editor';
-import { Route } from 'react-router';
+import { ConnectedNewSong as NewSong } from './NewSong';
+import { Route, Switch } from 'react-router';
 
 export class Songs extends React.Component {
     render() {
         return (
             <div>
             <Tray />
-            <Route path='/songs/:songId' component={Editor} />
+                <Switch>
+                    <Route path='/songs/new' component={NewSong} />
+                    <Route path='/songs/:songId' component={Editor} />
+                </Switch>
             </div>
         )
     }

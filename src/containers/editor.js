@@ -43,12 +43,12 @@ export class Editor extends Component {
         const editing = this.state.editing;
         return (
             <div>
-                <button onClick={this.saveCurrentSong}>Save</button>
                 
-            <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea>
-                
+                <div className='col-md-6'>
+            <textarea style={{height:'400px', width: '100%'}} onChange={this.handleChange} value={this.props.currentSong.content}></textarea><button onClick={this.saveCurrentSong}>Save</button>
+                </div><div className='col-md-6'>
             <Display text={this.props.currentSong.content}/>
-                
+                </div>
             </div>
         )
     }
