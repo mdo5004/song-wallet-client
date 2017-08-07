@@ -29,7 +29,7 @@ export function saveCurrentSong(id,content){
         }).then( response => response.json())
         .then( song => {
             dispatch( {type: 'SAVE_SONG', payload:song});
-            song['id'] = id;
+            song['id'] = parseInt(id);
             dispatch( {type: 'UPDATE_SONG', payload:song});
         })
         .catch( console.log ) 
