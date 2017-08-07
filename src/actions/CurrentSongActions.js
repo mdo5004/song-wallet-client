@@ -12,7 +12,7 @@ export function loadCurrentSong(id){
     }
 }
 export function updateCurrentSong(content){  
-    return {type:'UPDATE_SONG', payload:{content: content}}
+    return {type:'UPDATE_SONG', payload:content}
 }
 
 export function saveCurrentSong(id,content){
@@ -28,4 +28,10 @@ export function saveCurrentSong(id,content){
         .then( song => dispatch( {type: 'SAVE_SONG', payload:song} ) )
         .catch( console.log ) 
     } 
+}
+
+export function parseSong(song) {
+    const title = song.match(/{title:(.*)}/)[1]
+    const artist = song.match(/{subtitle:(.*)}/)[1]
+    return {title: title, artist: artist, content: song}
 }

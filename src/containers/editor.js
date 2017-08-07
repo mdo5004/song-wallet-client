@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../css/Editor.css';
 import { Display } from '../components/display';
-import { loadCurrentSong, updateCurrentSong, saveCurrentSong } from '../actions/CurrentSongActions';
+import { parseSong, loadCurrentSong, updateCurrentSong, saveCurrentSong } from '../actions/CurrentSongActions';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -16,7 +17,8 @@ export class Editor extends Component {
     }
     
     handleChange = (event) => {
-        this.props.updateCurrentSong(event.target.value);
+        const song = parseSong(event.target.value);
+        this.props.updateCurrentSong(song);
     }
     saveCurrentSong = () => {
         this.props.saveCurrentSong(this.props.match.params.songId,this.props.currentSong)
@@ -67,6 +69,9 @@ const mapStateToProps = (state) => {
     }
 }
 Editor.defaultProps = {
-    currentSong:{content:''}
+    currentSong:{content:'',
+                 title:'',
+                 artist:''
+                }
 }
 export const ConnectedEditor = connect(mapStateToProps,mapDispatchToProps)(Editor)
