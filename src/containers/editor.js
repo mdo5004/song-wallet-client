@@ -40,7 +40,7 @@ export class Editor extends Component {
         })
     }
     render() {
-        const editing = this.state.editing;
+        
         return (
             <div>
                 

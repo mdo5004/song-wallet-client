@@ -15,6 +15,13 @@ export function login(auth_params) {
     }
 }
 
+export function authenticateSession() {
+    const auth_token = sessionStorage.getItem('auth_token');
+    if (auth_token) {
+        
+    }
+}
+
 export function logout() {
     sessionStorage.setItem('auth_token','')
     return({type:'DELETE_SESSION', payload: []})

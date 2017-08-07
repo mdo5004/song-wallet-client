@@ -6,6 +6,9 @@ import { logout } from '../actions/SessionActions'
 
 export class Home extends Component {
     
+    componentDidMount() {
+        
+    }
     render() {
         const {username} = this.props.currentUser;
         
