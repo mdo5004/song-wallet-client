@@ -31,8 +31,9 @@ export class Tray extends Component {
     componentDidMount() {
         this.props.actions.loadSongs();
     }
-    componentWillReceiveProps(nextProps) {
-        this.props.actions.loadSongs();
+    componentDidUpdate(prevProps) {
+        
+
     }
 }
 

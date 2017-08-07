@@ -1,3 +1,5 @@
+import { loadSongs } from './SongActions'
+
 export function loadCurrentSong(id){
     return (dispatch) =>{
         return fetch(`/songs/${id}`, {
@@ -25,9 +27,13 @@ export function saveCurrentSong(id,content){
                 "Authorization": sessionStorage.getItem("auth_token")
             }
         }).then( response => response.json())
-        .then( song => dispatch( {type: 'SAVE_SONG', payload:song} ) )
+        .then( song => {
+            dispatch( {type: 'SAVE_SONG', payload:song});
+            song['id'] = id;
+            dispatch( {type: 'UPDATE_SONG', payload:song});
+        })
         .catch( console.log ) 
-    } 
+    }
 }
 
 export function parseSong(song) {
