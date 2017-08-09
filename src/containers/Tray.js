@@ -3,28 +3,31 @@ import { bindActionCreators } from 'redux';
 import * as songActions from '../actions/SongActions';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Table } from 'react-bootstrap';
+import { List } from 'semantic-ui-react';
 
 
 export class Tray extends Component {
-    
+
     render() {
         const songs = this.props.songs.map( (song,index) => {
-            return <tr key={index}><td ><NavLink exact to={`/songs/${song.id}`}>
-                {song.title} - {song.artist}</NavLink></td></tr>
+            return (<List.Item key={index} as={NavLink} to={`/songs/${song.id}`}>
+                        <List.Content>
+                            <List.Header>{song.title}</List.Header>
+                            <List.Description>{song.artist}</List.Description>
+                        </List.Content>
+                    </List.Item>
+                   ) 
         })
-        songs.push(<tr key='-1'><td><NavLink exact to='/songs/new'>New Song...</NavLink></td></tr>)
+        songs.push(<List.Item key='-1' as={NavLink} to={`/songs/new`}>
+                        <List.Content>
+                            <List.Header>New...</List.Header>
+                        </List.Content>
+                    </List.Item>)
         return (
             <div>
-                <Table striped bordered condensed >
-                  <thead>
-                      <tr><td>Songs</td></tr>
-                  </thead>
-                   <tbody>
+                <List selection verticalAlign='middle'>
                     {songs}
-                    </tbody>
-                </Table>
-                
+                </List> 
             </div>
         )
     }
@@ -32,7 +35,7 @@ export class Tray extends Component {
         this.props.actions.loadSongs();
     }
     componentDidUpdate(prevProps) {
-        
+
 
     }
 }
@@ -43,8 +46,9 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => {  
-  return {
-    actions: bindActionCreators(songActions, dispatch)
-  };
+    return {
+        actions: bindActionCreators(songActions, dispatch)
+    };
 }
 export const ConnectedTray = connect(mapStateToProps,mapDispatchToProps)(Tray)
+
