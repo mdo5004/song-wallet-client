@@ -14,6 +14,12 @@ export const NavigationBar = () => {
                 <NavLink activeClassName='active' to='/friends'>
                     Friends
                 </NavLink>
+                <NavLink activeClassName='active' to='/groups'>
+                    Groups
+                </NavLink>
+                <NavLink activeClassName='active' to='/setlists'>
+                    Setlists
+                </NavLink>
             </li>
         </ul>
     )
