@@ -14,7 +14,7 @@ import { Songs } from './containers/Songs';
 class App extends Component {
     render() {
         return (
-            <div><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css" />    
+            <div>    
                 <Router>
                   <div>
                    <NavigationBar />
