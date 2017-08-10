@@ -7,6 +7,7 @@ export class Setlists extends React.Component {
     render() {
         const setlistsIndex = [
             {
+                id:"1",
                 name:"Setlist A",
                 band:"Incubus Tribute Band",
                 songs: [{
@@ -17,7 +18,8 @@ export class Setlists extends React.Component {
                     artist: "The Who"
                 }],
             },
-        {
+            {
+                id:"2",
                 name:"Setlist B",
                 band:"Incubus Tribute Band",
                 songs: [{
@@ -29,11 +31,13 @@ export class Setlists extends React.Component {
                 }],
             }]
         const setlists = setlistsIndex.map( (setlist, index) => {
-            return <Setlist setlist={setlist} key={index}/>
+            return (
+                <Setlist setlist={setlist} key={index}/>
+            )
         })
         return (
             <Grid columns={3} doubling stackable container>
-                    {setlists}
+                {setlists}
             </Grid>
         )
     }
