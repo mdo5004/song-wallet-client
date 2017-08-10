@@ -7,6 +7,7 @@ import './css/App.css';
 import { ConnectedHome as Home } from './containers/Home';
 import { NavigationBar } from './components/navbar';
 import { Songs } from './containers/Songs';
+import { Container } from 'semantic-ui-react';
 //import { ConnectedEditor as Editor } from './containers/Editor';
 //import { loadSongs } from './actions/SongActions';
 //import { login } from './actions/SessionActions';
@@ -14,7 +15,7 @@ import { Songs } from './containers/Songs';
 class App extends Component {
     render() {
         return (
-            <div>    
+            <Container>
                 <Router>
                   <div>
                    <NavigationBar />
@@ -26,7 +27,7 @@ class App extends Component {
                     </Switch>  
                     </div>
                 </Router>
-            </div>
+            </Container>
         );
     }
 }
