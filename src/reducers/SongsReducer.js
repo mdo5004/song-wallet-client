@@ -11,7 +11,7 @@ const songsReducer = (state = initialState, action) => {
             return action.payload;
         case 'UPDATE_SONG':
             return state.map( song => {
-                if (song.id == action.payload.id) {
+                if (parseInt(song.id,10) === parseInt(action.payload.id,10)) {
                     return action.payload
                 } else {
                     return song

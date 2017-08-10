@@ -1,4 +1,4 @@
-import { loadSongs } from './SongActions'
+//import { loadSongs } from './SongActions'
 
 export function loadCurrentSong(id){
     return (dispatch) =>{
@@ -29,7 +29,7 @@ export function saveCurrentSong(id,content){
         }).then( response => response.json())
         .then( song => {
             dispatch( {type: 'SAVE_SONG', payload:song});
-            song['id'] = parseInt(id);
+            song['id'] = parseInt(id,10);
             dispatch( {type: 'UPDATE_SONG', payload:song});
         })
         .catch( console.log ) 
