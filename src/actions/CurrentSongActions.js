@@ -37,7 +37,13 @@ export function saveCurrentSong(id,content){
 }
 
 export function parseSong(song) {
-    const title = song.match(/{title:(.*)}/)[1]
-    const artist = song.match(/{subtitle:(.*)}/)[1]
+    let title = song.match(/{title:(.*)}/) || song.match(/{t:(.*)}/)
+    let artist = song.match(/{subtitle:(.*)}/) || song.match(/{s:(.*)}/) 
+    if (title instanceof Array && title.length > 1) {
+        title = title[1]
+    }
+    if (artist instanceof Array && artist.length > 1) {
+        artist = artist[1]
+    }
     return {title: title, artist: artist, content: song}
 }
