@@ -21,7 +21,7 @@ export class NavigationBar extends React.Component {
                     <Menu.Item as={NavLink} to={'/signout'} name='logout' active={activeItem === 'friends'} onClick={this.handleItemClick} position='right'/>
 
                 </Menu>
-
+                <br/>
             </div>
         )
     }
