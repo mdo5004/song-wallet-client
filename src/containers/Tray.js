@@ -20,7 +20,7 @@ export class Tray extends Component {
         })
         songs.push(<List.Item key='-1' as={NavLink} to={`/songs/new`}>
                         <List.Content>
-                            <List.Header>New...</List.Header>
+                            <List.Header>New</List.Header>
                         </List.Content>
                     </List.Item>)
         return (
