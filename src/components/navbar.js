@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Input, Menu, Segment } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 
 export class NavigationBar extends React.Component {
-    state = { activeItem: 'songs' }
+    
+    state = { activeItem: this.props.match }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
