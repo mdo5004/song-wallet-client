@@ -7,7 +7,8 @@ import './css/App.css';
 import { ConnectedHome as Home } from './containers/Home';
 import { NavigationBar } from './components/navbar';
 import { Songs } from './containers/Songs';
-import { Setlists } from './containers/Setlists';
+import { Groups } from './containers/Groups';
+import { ConnectedSetlists as Setlists } from './containers/Setlists';
 import { Container } from 'semantic-ui-react';
 //import { ConnectedEditor as Editor } from './containers/Editor';
 //import { loadSongs } from './actions/SongActions';
@@ -23,6 +24,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/' component={Home}/>  
                         <Route path='/songs' component={Songs} />
+                        <Route path='/groups' component={Groups} />
                         <Route path='/setlists' component={Setlists} />
                         <Route path='/friends' render={ () => { return (<p>Friends:</p>)}} />
                         <Route render={ () => { return <p>Not found</p>}}/>

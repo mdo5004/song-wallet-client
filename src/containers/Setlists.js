@@ -1,44 +1,40 @@
 import React from 'react';
 import Setlist from '../components/setlist';
 import { Grid } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
+import * as setlistActions from '../actions/SetlistActions';
+import { connect } from 'react-redux';
 
 export class Setlists extends React.Component {
 
+    componentDidMount(){
+        this.props.actions.loadSetlists();
+    }
     render() {
-        const setlistsIndex = [
-            {
-                id:"1",
-                name:"Setlist A",
-                band:"Incubus Tribute Band",
-                songs: [{
-                    title: "Stairway to Heaven",
-                    artist: "Led Zeppelin"
-                },{
-                    title: "Who Are You?",
-                    artist: "The Who"
-                }],
-            },
-            {
-                id:"2",
-                name:"Setlist B",
-                band:"Incubus Tribute Band",
-                songs: [{
-                    title: "Stairway to Heaven",
-                    artist: "Led Zeppelin"
-                },{
-                    title: "Who Are You?",
-                    artist: "The Who"
-                }],
-            }]
-        const setlists = setlistsIndex.map( (setlist, index) => {
+        
+        const setlistsIndex = this.props.setlists.map( (setlist, index) => {
+            
             return (
                 <Setlist setlist={setlist} key={index}/>
             )
         })
         return (
             <Grid columns={3} doubling stackable container>
-                {setlists}
+                {setlistsIndex}
             </Grid>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        setlists: state.setlists
+    }
+}
+const mapDispatchToProps = (dispatch) => {  
+    return {
+        actions: bindActionCreators(setlistActions, dispatch)
+    };
+}
+export const ConnectedSetlists = connect(mapStateToProps,mapDispatchToProps)(Setlists)
+
