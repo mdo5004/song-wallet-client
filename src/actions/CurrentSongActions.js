@@ -2,7 +2,7 @@
 
 export function loadCurrentSong(id){
     return (dispatch) =>{
-        return fetch(`/songs/${id}`, {
+        return fetch(`http://localhost:3001/songs/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export function updateCurrentSong(content){
 
 export function saveCurrentSong(id,content){
     return (dispatch) =>{
-        return fetch(`/songs/${id}`, {
+        return fetch(`http://localhost:3001/songs/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(content),
             headers: {

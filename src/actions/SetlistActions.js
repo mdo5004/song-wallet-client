@@ -1,7 +1,7 @@
 export function loadSetlists() {
     return (dispatch) => {
         
-        return fetch('/setlists', {
+        return fetch('http://localhost:3001/setlists', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

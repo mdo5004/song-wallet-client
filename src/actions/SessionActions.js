@@ -1,6 +1,6 @@
 export function login(auth_params) {
     return (dispatch) => {
-        return fetch('/api/authenticate', {
+        return fetch('http://localhost:3001/authenticate', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

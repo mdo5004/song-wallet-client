@@ -9,7 +9,7 @@
      }
  },
  "proxies":{
-        "/api/":{
+        "/":{
             "origin":"https://vast-fortress-67646.herokuapp.com/"
         }
     }
