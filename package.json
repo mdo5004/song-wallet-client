@@ -20,6 +20,7 @@
   "devDependencies": {
     "react-scripts": "1.0.10"
   },
+  "proxy": "https://vast-fortress-67646.herokuapp.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
