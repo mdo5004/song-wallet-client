@@ -1,7 +1,7 @@
 export function loadSetlists() {
     return (dispatch) => {
         
-        return fetch('http://localhost:3001/setlists', {
+        return fetch('https://vast-fortress-67646.herokuapp.com/setlists', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
