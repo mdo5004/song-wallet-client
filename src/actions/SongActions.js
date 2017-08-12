@@ -1,7 +1,7 @@
 export function loadSongs() {
     return (dispatch) => {
         
-        return fetch('https://vast-fortress-67646.herokuapp.com/songs', {
+        return fetch('/songs', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export function loadSongs() {
 export function newSong(song) {
     return (dispatch) => {
         
-        return fetch('https://vast-fortress-67646.herokuapp.com/songs', {
+        return fetch('/songs', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

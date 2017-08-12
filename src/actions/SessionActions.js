@@ -1,6 +1,6 @@
 export function login(auth_params) {
     return (dispatch) => {
-        return fetch('https://vast-fortress-67646.herokuapp.com/authenticate', {
+        return fetch('/authenticate', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
