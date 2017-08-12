@@ -2,7 +2,7 @@
 
 export function loadCurrentSong(id){
     return (dispatch) =>{
-        return fetch(`https://vast-fortress-67646.herokuapp.com/songs/${id}`, {
+        return fetch(`/songs/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export function updateCurrentSong(content){
 
 export function saveCurrentSong(id,content){
     return (dispatch) =>{
-        return fetch(`https://vast-fortress-67646.herokuapp.com/songs/${id}`, {
+        return fetch(`/songs/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(content),
             headers: {
