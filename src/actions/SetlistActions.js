@@ -1,7 +1,7 @@
 export function loadSetlists() {
     return (dispatch) => {
         
-        return fetch('/setlists', {
+        return fetch('/api/setlists', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export function loadSetlists() {
 export function newSetlist(setlist) {
     return (dispatch) => {
         
-        return fetch('/setlists', {
+        return fetch('/api/setlists', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

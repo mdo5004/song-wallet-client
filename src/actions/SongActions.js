@@ -1,7 +1,7 @@
 export function loadSongs() {
     return (dispatch) => {
         
-        return fetch('/songs', {
+        return fetch('/api/songs', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export function loadSongs() {
 export function newSong(song) {
     return (dispatch) => {
         
-        return fetch('/songs', {
+        return fetch('/api/songs', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
