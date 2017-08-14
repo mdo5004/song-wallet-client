@@ -12,7 +12,7 @@ export function loadSetlists() {
           .catch( resp => dispatch( {type: 'GET_SETLISTS', payload: [] }))
     }
 }
-export function newSetlist(setlist) {
+export function createSetlist(setlist) {
     return (dispatch) => {
         
         return fetch('http://localhost:3001/api/setlists', {
