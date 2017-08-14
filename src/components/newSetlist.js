@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Card, Button, List } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import * as newSetlistActions from '../actions/NewSetlistActions';
+import * as songActions from '../actions/SongActions';
 import { connect } from 'react-redux';
 
 export class NewSetlist extends React.Component {
@@ -15,6 +16,7 @@ export class NewSetlist extends React.Component {
     }
     componentDidMount() {
         this.props.actions.newSetlist();
+        this.props.songActions.loadSongs();
     }
     handleChange = (event) => {
         event.preventDefault();
@@ -55,8 +57,13 @@ export class NewSetlist extends React.Component {
                     <input name="name" value={this.props.newSetlist.name} onChange={this.handleChange} placeholder="New Setlist"/>
                     <Card.Content>
                     <label>Songs</label>
-                    <List>{this.props.newSetlist.songs.map( (song, index) => <List.Item key={index}><List.Content></List.Content>{song.title}</List.Item>)}</List>
-                    <input name="song" type="text" value={this.state.song} onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="New Song"></input>
+                    <List>{this.props.newSetlist.songs.map( (song, index) => <List.Item key={index}>
+                        <List.Content>{song.title}</List.Content>
+                    </List.Item>)}
+                    </List>
+                    
+                    <input name="song" value={this.state.song} onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="New Song">
+                    </input>
                     </Card.Content>
                 </Card>)
         } else {
@@ -77,12 +84,14 @@ export class NewSetlist extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        newSetlist: state.newSetlist
+        newSetlist: state.newSetlist,
+        songs: state.songs,
     }
 }
 const mapDispatchToProps = (dispatch) => {  
     return {
-        actions: bindActionCreators(newSetlistActions, dispatch)
+        actions: bindActionCreators(newSetlistActions, dispatch),
+        songActions: bindActionCreators(songActions, dispatch)
     };
 }
 export const ConnectedNewSetlist = connect(mapStateToProps,mapDispatchToProps)(NewSetlist)
