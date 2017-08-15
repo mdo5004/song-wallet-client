@@ -17,7 +17,7 @@ export class Setlist extends React.Component {
     }
 
     render() {
-        const {name, songs, id} = this.props["setlist"];
+        const {name, songs} = this.props["setlist"];
         let listOfSongs, toggleButton;
         if (this.state.editing) {
             listOfSongs = songs.map( (song, index) => {

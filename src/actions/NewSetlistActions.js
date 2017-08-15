@@ -9,3 +9,11 @@ export function renameSetlist(name) {
 export function addSongToSetlist(song){
     return {type: 'ADD_SONG_TO_CURRENT_SETLIST', payload:song}
 }
+
+export function removeSongFromSetlist(songId){
+    return {type: 'REMOVE_SONG_FROM_CURRENT_SETLIST', payload:songId}
+}
+
+export function createSetlist(setlist) {
+    return {type: '', payload:null}
+}
