@@ -19,17 +19,16 @@ class App extends Component {
         return (
             <Container>
                 <Router>
-                  <div>
-                   <NavigationBar />
-                    <Switch>
-                        <Route exact path='/' component={Home}/>  
-                        <Route path='/songs' component={Songs} />
-                        <Route path='/groups' component={Groups} />
-                        <Route path='/setlists' component={Setlists} />
-                        <Route path='/friends' render={ () => { return (<p>Friends:</p>)}} />
-                        <Route render={ () => { return <p>Not found</p>}}/>
-                    </Switch>  
-                    </div>
+                        <NavigationBar >
+                            <Switch>
+                                <Route exact path='/' component={Home}/>  
+                                <Route path='/songs' component={Songs} />
+                                <Route path='/groups' component={Groups} />
+                                <Route path='/setlists' component={Setlists} />
+                                <Route path='/friends' render={ () => { return (<p>Friends:</p>)}} />
+                                <Route render={ () => { return <p>Not found</p>}}/>
+                            </Switch>  
+                        </NavigationBar>
                 </Router>
             </Container>
         );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
 
 export class NavigationBar extends React.Component {
     
@@ -18,10 +18,12 @@ export class NavigationBar extends React.Component {
                     <Menu.Item as={NavLink} to={'/setlists'} name='setlists' active={activeItem === 'setlists'} onClick={this.handleItemClick} />
                     <Menu.Item as={NavLink} to={'/groups'} name='groups' active={activeItem === 'groups'} onClick={this.handleItemClick} />
                     <Menu.Item as={NavLink} to={'/friends'} name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
-                    <Menu.Item as={NavLink} to={'/signout'} name='logout' active={activeItem === 'friends'} onClick={this.handleItemClick} position='right'/>
+                    <Menu.Item as={NavLink} to={'/signout'} name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} position='right'/>
 
                 </Menu>
-                <br/>
+                <Segment attached="bottom">
+                    {this.props.children}
+                </Segment>
             </div>
         )
     }
