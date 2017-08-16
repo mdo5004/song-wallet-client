@@ -23,7 +23,7 @@
   },
   "proxy": {
     "/api/*": {
-      "target": "http://localhost:3001",
+      "target": "https://vast-fortress-67646.herokuapp.com",
       "ws": false
     }
   },

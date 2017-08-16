@@ -7,7 +7,7 @@ import './css/App.css';
 import { ConnectedHome as Home } from './containers/Home';
 import { NavigationBar } from './components/navbar';
 import { Songs } from './containers/Songs';
-import { Groups } from './containers/Groups';
+import { ConnectedGroups as Groups } from './containers/Groups';
 import { ConnectedSetlists as Setlists } from './containers/Setlists';
 import { Container } from 'semantic-ui-react';
 //import { ConnectedEditor as Editor } from './containers/Editor';

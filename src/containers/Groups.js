@@ -1,54 +1,28 @@
 import React from 'react';
 import { Grid, Card, Table, Icon } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as groupActions from '../actions/GroupActions';
 
 export class Groups extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            groups: [
-                {
-                    id:"1",
-                    name:"Incubus Cover Band",
-                    members: [
-                        {
-                            name:"Ryan O'Connell",
-                            id:"2"
-                        },
-                        {
-                            name:"Michael O'Connell",
-                            id:"1"
-                        },
-                    ]
-                },
-                {
-                    id:"2",
-                    name:"Punch Brothers Cover Band",
-                    members: [
-                        {
-                            name:"Michael O'Connell",
-                            id:"1"
-                        },{
-                            name:"Levi Mason",
-                            id:"3"
-                        },{
-                            name:"Daniel Carter",
-                            id:"4"
-                        },{
-                            name:"Alexa Carter",
-                            id:"5"
-                        }
-                    ]
-                }
-            ]
-        }
+    componentDidMount() {
+        this.props.actions.getGroups();
     }
     addMemberToGroup = (memberName, groupId) => {
+        
+        const group = this.props.groups.filter( group => group.id === groupId )[0]
+        
+        const member = {name:memberName, id:null}
 
+        group.members.push(member)
+        
+        this.props.actions.updateGroup(group)
+        
     }
     render() {
 
-        const groupElements = this.state.groups.map( group => {
+        const groupElements = this.props.groups.map( (group, index)=> {
+    
             return <GroupTable 
                        key= {group.id}
                        group={group} 
@@ -61,9 +35,16 @@ export class Groups extends React.Component {
             </Grid>
         )
     }
-
 }
-
+const mapStateToPropsGroups = (state) => {
+    return {groups:state.groups}
+}
+const mapDispatchToProps = (dispatch) => {  
+    return {
+        actions: bindActionCreators(groupActions, dispatch)
+    };
+}
+export const ConnectedGroups = connect(mapStateToPropsGroups,mapDispatchToProps)(Groups)
 
 class GroupHeader extends React.Component {
     render() {
@@ -95,14 +76,14 @@ class GroupTable extends React.Component {
         this.props.addMemberToGroup(this.state.text,this.props.group.id)
     }
     render() {
-        const { name, members } = this.props.group;    
-
+        
+        const { name, users } = this.props.group;    
         return (
             <Grid.Column>
                 <Card >
                     <Table>
                         <GroupHeader name={name}/>
-                        <GroupMembers members={members}/>
+                        <GroupMembers members={users}/>
                         <AddMemberRow 
                             text={this.state.text} 
                             updateText={this.updateText}
@@ -116,12 +97,14 @@ class GroupTable extends React.Component {
 }
 class GroupMembers extends React.Component {
     render() {
-        const groupMembers = this.props.members.map( member => {
+        let group;
+        if (this.props.members) {
+            group = this.props.members.map( member => {
             return (<MemberRow member={member} key={member.name}/>)
-        })
+        })}
         return (
             <Table.Body>
-                {groupMembers}
+                {group}
             </Table.Body>
         )
     }
