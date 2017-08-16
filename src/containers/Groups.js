@@ -2,45 +2,58 @@ import React from 'react';
 import { Grid, Card, Table, Icon } from 'semantic-ui-react';
 
 export class Groups extends React.Component {
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            groups: [
+                {
+                    id:"1",
+                    name:"Incubus Cover Band",
+                    members: [
+                        {
+                            name:"Ryan O'Connell",
+                            id:"2"
+                        },
+                        {
+                            name:"Michael O'Connell",
+                            id:"1"
+                        },
+                    ]
+                },
+                {
+                    id:"2",
+                    name:"Punch Brothers Cover Band",
+                    members: [
+                        {
+                            name:"Michael O'Connell",
+                            id:"1"
+                        },{
+                            name:"Levi Mason",
+                            id:"3"
+                        },{
+                            name:"Daniel Carter",
+                            id:"4"
+                        },{
+                            name:"Alexa Carter",
+                            id:"5"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+    addMemberToGroup = (memberName, groupId) => {
+
+    }
     render() {
-        const groups = [
-            {
-                id:"1",
-                name:"Incubus Cover Band",
-                members: [
-                    {
-                        name:"Ryan O'Connell",
-                        id:"2"
-                    },
-                    {
-                        name:"Michael O'Connell",
-                        id:"1"
-                    },
-                ]
-            },
-            {
-                id:"2",
-                name:"Punch Brothers Cover Band",
-                members: [
-                    {
-                        name:"Michael O'Connell",
-                        id:"1"
-                    },{
-                        name:"Levi Mason",
-                        id:"3"
-                    },{
-                        name:"Daniel Carter",
-                        id:"4"
-                    },{
-                        name:"Alexa Carter",
-                        id:"5"
-                    }
-                ]
-            }
-        ]
-        const groupElements = groups.map( group => {
-            return <Group group={group}/>
+
+        const groupElements = this.state.groups.map( group => {
+            return <GroupTable 
+                       key= {group.id}
+                       group={group} 
+                       addMemberToGroup={this.addMemberToGroup}
+                       />
         })
         return (
             <Grid columns={3} doubling stackable container>
@@ -51,18 +64,6 @@ export class Groups extends React.Component {
 
 }
 
-class Group extends React.Component {
-
-    render() {
-        return (
-            <Grid.Column>
-                <Card >
-                    <GroupTable group={this.props.group}/>
-                </Card >
-            </Grid.Column>
-        )
-    }
-}
 
 class GroupHeader extends React.Component {
     render() {
@@ -78,22 +79,45 @@ class GroupHeader extends React.Component {
     }
 }
 class GroupTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text:''
+        }
+
+    }
+    updateText = (text) => {
+        this.setState({
+            text:text
+        })
+    }
+    addMemberToGroup = () => {
+        this.props.addMemberToGroup(this.state.text,this.props.group.id)
+    }
     render() {
         const { name, members } = this.props.group;    
 
         return (
-            <Table>
-                <GroupHeader name={name}/>
-                <GroupMembers members={members}/>
-                <AddMemberRow />
-            </Table>
+            <Grid.Column>
+                <Card >
+                    <Table>
+                        <GroupHeader name={name}/>
+                        <GroupMembers members={members}/>
+                        <AddMemberRow 
+                            text={this.state.text} 
+                            updateText={this.updateText}
+                            addMemberToGroup={this.addMemberToGroup}
+                            />
+                    </Table>
+                </Card>
+            </Grid.Column>
         )
     }
 }
 class GroupMembers extends React.Component {
     render() {
         const groupMembers = this.props.members.map( member => {
-            return (<MemberRow member={member}/>)
+            return (<MemberRow member={member} key={member.name}/>)
         })
         return (
             <Table.Body>
@@ -115,13 +139,36 @@ class MemberRow extends React.Component {
     }
 }
 class AddMemberRow extends React.Component {
+
+    handleInput = (event) => {
+        this.props.updateText(event.target.value);
+    }
+    handleKeypress = (event) => {
+        if(event.which === 13){
+            // enter key pressed
+            this.props.addMemberToGroup();
+        }
+    }
     render() {
         return (
             <Table.Footer>
                 <Table.Row>
                     <Table.HeaderCell></Table.HeaderCell>
-                    <Table.HeaderCell><input type="text" placeholder="New Member"/></Table.HeaderCell>
-                    <Table.HeaderCell><Icon name="add"/></Table.HeaderCell>
+                    <Table.HeaderCell>
+                        <input 
+                            type="text" 
+                            placeholder="New Member" 
+                            value={this.props.text} 
+                            onChange={this.handleInput}
+                            onKeyDown={this.handleKeypress}
+                            />
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
+                        <Icon 
+                            name="add" 
+                            onClick={this.props.addMemberToGroup}
+                            />
+                    </Table.HeaderCell>
                 </Table.Row>
             </Table.Footer>
         )
