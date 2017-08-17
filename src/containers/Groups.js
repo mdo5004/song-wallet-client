@@ -3,6 +3,9 @@ import { Grid, Card, Table, Icon } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as groupActions from '../actions/GroupActions';
+import getFriends from '../actions/FriendActions';
+import Autosuggest from 'react-autosuggest';
+import '../css/Autosuggest.css'
 
 export class Groups extends React.Component {
     componentDidMount() {
@@ -96,14 +99,14 @@ class AddMemberRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            text: '',
+            suggestions: [],
         }
     }
-    
-    handleInput = (event) => {
-        let text = event.target.value;
+
+    onChange = (event, { newValue }) => {
         this.setState({
-            text:text
+            text: newValue
         })
     }
     handleKeypress = (event) => {
@@ -111,37 +114,74 @@ class AddMemberRow extends React.Component {
             this.addMemberToGroup()
         }
     }
-    
+
     addMemberToGroup = () => {
         this.props.actions.addMemberToGroup(this.state.text,this.props.index);
         this.setState({
             text:''
         })
     }
-    render() {
-        return (
-            <Table.Footer>
-                <Table.Row>
-                    <Table.HeaderCell></Table.HeaderCell>
-                    <Table.HeaderCell>
-                        <input 
-                            type="text" 
-                            placeholder="New Member" 
-                            value={this.state.text} 
-                            onChange={this.handleInput}
-                            onKeyDown={this.handleKeypress}
-                            />
-                    </Table.HeaderCell>
-                    <Table.HeaderCell>
-                        <Icon 
-                            name="add" 
-                            onClick={this.addMemberToGroup}
-                            />
-                    </Table.HeaderCell>
-                </Table.Row>
-            </Table.Footer>
-        )
+    
+    getSuggestions = (value) => {
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+        //TODO: make this SMARTER
+        const suggestions = inputLength === 0 ? [] : this.props.friends.filter(
+            lang => lang.name.toLowerCase().match(inputValue) !== null)
+        return suggestions
     }
-}
+    getSuggestionValue = (suggestion) => {return suggestion.name};
+    onSuggestionsFetchRequested = ({ value }) => {
+        this.setState({
+            suggestions: this.getSuggestions(value)
+        })
+    }
 
-const ConnectedAddMemberRow = connect(null,mapDispatchToProps)(AddMemberRow)
+// Autosuggest will call this function every time you need to clear suggestions.
+onSuggestionsClearRequested = () => {
+    this.setState({
+        suggestions: []
+    })
+}
+renderSuggestion = suggestion => {
+    return <span>{suggestion.name}</span>
+}
+render() {
+    const inputProps = {
+        value:this.state.text,   
+        onChange:this.onChange,
+        type: 'search',
+        placeholder: 'Search Friends'
+    }
+    
+    return (
+        <Table.Footer>
+            <Table.Row>
+                <Table.HeaderCell></Table.HeaderCell>
+                <Table.HeaderCell>
+                    <Autosuggest 
+                        suggestions={this.state.suggestions}
+                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                        getSuggestionValue={this.getSuggestionValue}
+                        renderSuggestion={this.renderSuggestion}
+                        inputProps={inputProps}
+                        value={this.state.text} 
+                        onChange={this.handleInput}
+                        />
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                    <Icon 
+                        name="add" 
+                        onClick={this.addMemberToGroup}
+                        />
+                </Table.HeaderCell>
+            </Table.Row>
+        </Table.Footer>
+    )
+}
+}
+const mapStateToPropsAddMemberRow = (state) => {
+    return {friends:state.friends}
+}
+const ConnectedAddMemberRow = connect(mapStateToPropsAddMemberRow,mapDispatchToProps)(AddMemberRow)
