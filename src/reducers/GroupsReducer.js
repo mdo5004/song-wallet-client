@@ -8,13 +8,10 @@ const groupsReducer = (state = initialState, action) => {
             return state;
         case 'GET_GROUPS':
             return action.payload;
-        case 'UPDATE_GROUP':
-            const group = action.payload;
-            const id = group.id;
-            debugger
-            return Object.assign({}, state, {
-                [id]: Object.assign({}, state[id], group
-            )});
+        case 'ADD_MEMBER_TO_GROUP':
+            let newState = state.slice();
+            newState[action.payload.groupIndex].users.push({id:null, name:action.payload.name})
+            return newState;
         default:
             return state;
     }

@@ -8,25 +8,15 @@ export class Groups extends React.Component {
     componentDidMount() {
         this.props.actions.getGroups();
     }
-    addMemberToGroup = (memberName, groupId) => {
-        
-        const group = this.props.groups.filter( group => group.id === groupId )[0]
-        
-        const member = {name:memberName, id:null}
 
-        group.members.push(member)
-        
-        this.props.actions.updateGroup(group)
-        
-    }
     render() {
 
         const groupElements = this.props.groups.map( (group, index)=> {
-    
+
             return <GroupTable 
-                       key= {group.id}
+                       key={group.id}
+                       index={index}
                        group={group} 
-                       addMemberToGroup={this.addMemberToGroup}
                        />
         })
         return (
@@ -60,23 +50,8 @@ class GroupHeader extends React.Component {
     }
 }
 class GroupTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text:''
-        }
-
-    }
-    updateText = (text) => {
-        this.setState({
-            text:text
-        })
-    }
-    addMemberToGroup = () => {
-        this.props.addMemberToGroup(this.state.text,this.props.group.id)
-    }
     render() {
-        
+
         const { name, users } = this.props.group;    
         return (
             <Grid.Column>
@@ -84,11 +59,7 @@ class GroupTable extends React.Component {
                     <Table>
                         <GroupHeader name={name}/>
                         <GroupMembers members={users}/>
-                        <AddMemberRow 
-                            text={this.state.text} 
-                            updateText={this.updateText}
-                            addMemberToGroup={this.addMemberToGroup}
-                            />
+                        <ConnectedAddMemberRow index={this.props.index} />
                     </Table>
                 </Card>
             </Grid.Column>
@@ -100,8 +71,8 @@ class GroupMembers extends React.Component {
         let group;
         if (this.props.members) {
             group = this.props.members.map( member => {
-            return (<MemberRow member={member} key={member.name}/>)
-        })}
+                return (<MemberRow member={member} key={member.name}/>)
+            })}
         return (
             <Table.Body>
                 {group}
@@ -122,15 +93,30 @@ class MemberRow extends React.Component {
     }
 }
 class AddMemberRow extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: ''
+        }
+    }
+    
     handleInput = (event) => {
-        this.props.updateText(event.target.value);
+        let text = event.target.value;
+        this.setState({
+            text:text
+        })
     }
     handleKeypress = (event) => {
         if(event.which === 13){
-            // enter key pressed
-            this.props.addMemberToGroup();
+            this.addMemberToGroup()
         }
+    }
+    
+    addMemberToGroup = () => {
+        this.props.actions.addMemberToGroup(this.state.text,this.props.index);
+        this.setState({
+            text:''
+        })
     }
     render() {
         return (
@@ -141,7 +127,7 @@ class AddMemberRow extends React.Component {
                         <input 
                             type="text" 
                             placeholder="New Member" 
-                            value={this.props.text} 
+                            value={this.state.text} 
                             onChange={this.handleInput}
                             onKeyDown={this.handleKeypress}
                             />
@@ -149,7 +135,7 @@ class AddMemberRow extends React.Component {
                     <Table.HeaderCell>
                         <Icon 
                             name="add" 
-                            onClick={this.props.addMemberToGroup}
+                            onClick={this.addMemberToGroup}
                             />
                     </Table.HeaderCell>
                 </Table.Row>
@@ -157,3 +143,5 @@ class AddMemberRow extends React.Component {
         )
     }
 }
+
+const ConnectedAddMemberRow = connect(null,mapDispatchToProps)(AddMemberRow)

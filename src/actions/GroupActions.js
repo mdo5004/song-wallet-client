@@ -16,3 +16,7 @@ export function getGroups() {
             .catch( console.log )
     }
 }
+
+export function addMemberToGroup(name,groupIndex) {
+    return {type:'ADD_MEMBER_TO_GROUP',payload:{name:name, groupIndex:groupIndex}}
+}
